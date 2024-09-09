@@ -263,3 +263,9 @@ Have a nice day! 👋
 ![Admin page](images/admin.png)
 
 ![Polls page](images/polls.png)
+
+### References:
+
+- https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx/
+- https://github.com/do-community/django-polls
+- https://docs.djangoproject.com/en/3.2/intro/
