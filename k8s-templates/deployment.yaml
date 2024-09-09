@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: polls-app
+  labels:
+    app: polls
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: polls
+  template:
+    metadata:
+      labels:
+        app: polls
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: 1000
+        supplementalGroups: [1001]
+      containers:
+        - image: polls:latest-version
+          name: polls
+          envFrom:
+            - secretRef:
+                name: polls-secret
+          ports:
+            - containerPort: 8000
+              name: server
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            runAsNonRoot: true
+            readOnlyRootFilesystem: false
+            runAsUser: 1000
